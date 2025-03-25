@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Réductions Enfant</title>
+</head>
+<body>
+    <h1>Liste des Réductions Enfant</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Âge</th>
+                <th>Pourcentage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reduction : ${reductions}">
+                <td th:text="${reduction.id}"></td>
+                <td th:text="${reduction.age}"></td>
+                <td th:text="${reduction.pourcentageReduction}"></td>
+                <td>
+                    <a th:href="@{/reductions/supprimer/{id}(id=${reduction.id})}">Supprimer</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/reductions/ajouter">Ajouter une réduction</a>
+</body>
+</html>
