@@ -74,6 +74,13 @@
 			<version>7.0.5.Final</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version> <!-- Utilise la dernière version disponible -->
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 

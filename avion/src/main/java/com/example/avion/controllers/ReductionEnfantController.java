@@ -39,7 +39,7 @@ public class ReductionEnfantController {
     }
 
     @GetMapping("/supprimer/{id}")
-    public String deleteReduction(@PathVariable Long id) {
+    public String deleteReduction(@PathVariable int id) {
         repository.deleteById(id);
         return "redirect:/reductions";
     }

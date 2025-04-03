@@ -1,11 +1,9 @@
 package com.example.avion.repositories;
 
+import com.example.avion.models.Avion.Avion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.avion.models.PromtionEnfant.ReductionEnfant;
-
-
 @Repository
-public interface ReductionEnfantRepository extends JpaRepository<ReductionEnfant, Integer> {
+public interface AvionRepository extends JpaRepository<Avion, Integer> {
 }

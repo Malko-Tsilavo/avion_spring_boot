@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="common/head :: head"></th:block>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <th:block th:include="common/sidebar :: sidebar"></th:block>
+
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Liste des Passeports</h2>
+
+                        <!-- Vérification du rôle ADMIN -->
+                        <div th:if="${#authentication.name == 'ADMIN'}">
+                            <a th:href="@{/passeports/insert}" class="btn btn-primary">Ajouter</a>
+                        </div>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date Réservation</th>
+                                    <th>Etat Réservation</th>
+                                    <th>Place Adulte</th>
+                                    <th>Place Enfant</th>
+                                    <th>Image de Passeport</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="passeport : ${passeports}">
+                                    <td th:text="${passeport.id}"></td>
+                                    <td th:text="${passeport.reservation.dateReservation}"></td>
+                                    <td th:text="${passeport.reservation.etatReservation}"></td>
+                                    <td th:text="${passeport.reservation.placeAdulte}"></td>
+                                    <td th:text="${passeport.reservation.placeEnfant}"></td>
+
+                                    <td>
+                                        <!-- Vérifie si le chemin d'image existe -->
+                                        <img th:if="${passeport.sourcePath != null}" 
+                                             th:src="@{${'/uploads/' + passeport.sourcePath}}" 
+                                             width="100" 
+                                             alt="Image de Passeport" />
+                                        <img th:if="${passeport.sourcePath == null}" 
+                                             th:src="@{/avion/uploads/default.jpg}" 
+                                             width="100" 
+                                             alt="Image par défaut" />
+                                    </td>
+
+                                    <td>
+                                        <a th:href="@{'/passeports/annuler?id_passeport=' + ${passeport.id}}" 
+                                           class="btn btn-danger btn-sm">Annuler</a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(passeports)}">
+                                    <td colspan="4" class="text-center">Aucun passeport trouvé</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:include="common/script :: script"></th:block>
+</body>
+
+</html>

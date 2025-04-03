@@ -10,10 +10,10 @@ public class ReductionEnfant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reduction_enfant")
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
-    private Integer age;
+    private int age;
 
     @Column(name = "pourcentage_reduction")
     private Double pourcentageReduction;
@@ -21,9 +21,9 @@ public class ReductionEnfant {
         return age;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
-    }
+    }    
 
     public Double getPourcentageReduction() {
         return pourcentageReduction;
@@ -33,7 +33,7 @@ public class ReductionEnfant {
         this.age = age;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="common/head :: head"></th:block>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <th:block th:include="common/sidebar :: sidebar"></th:block>
+
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Ajouter un Passeport</h2>
+
+                        <form th:action="@{/passeports/insert}" th:object="${passeport}" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="reservation">Réservation</label>
+                                <select id="reservation" name="reservation" class="form-control" th:field="*{reservation.id}">
+                                    <option th:each="reservation : ${reservations}" 
+                                            th:value="${reservation.id}" 
+                                            th:text="${reservation.id} + ' - ' + ${reservation.utilisateur.nom}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="file">Image du Passeport</label>
+                                <input type="file" id="file" name="file" class="form-control" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:include="common/script :: script"></th:block>
+</body>
+
+</html>
